@@ -1,4 +1,4 @@
-const { getPost } = require("./posts");
+const { createPost, getPost } = require("./posts");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,6 +9,17 @@ app.use(express.static("public"));
 
 app.get("/posts", async (req, res) => {
   const posts = await getPost();
+  res.json(posts);
+});
+
+app.post("/posts", async (req, res) => {
+  const payload = req.body;
+  console.log(payload);
+  if (!payload.titulo || !payload.url || !payload.descripcion) {
+    console.log("Faltan campos por llenar");
+    return res.send({ error: "Faltan campos por llenar" });
+  }
+  const posts = await createPost(payload);
   res.json(posts);
 });
 
