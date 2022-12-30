@@ -8,3 +8,12 @@ password: process.env.PASSWORD,
 database: process.env.DATABASE,
 allowExitOnIdle: true,
 });
+
+const getPost = async () => {
+    const { rows } = await pool.query("SELECT * FROM posts");
+    console.log(rows);
+    return rows;
+  };
+
+  module.exports = { getPost };
+  
