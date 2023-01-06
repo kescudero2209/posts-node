@@ -8,8 +8,17 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("/posts", async (req, res) => {
-  const posts = await getPost();
-  res.json(posts);
+  try{
+    const posts = await getPost();
+    if(posts.length !=0){
+        res.json(posts);
+    } else {
+        res.status(204).send("No Content:",err);
+    }
+}catch (err) {
+  res.status(500).json({ message: "Error al obtener los datos" });
+}
+  
 });
 
 app.post("/posts", async (req, res) => {

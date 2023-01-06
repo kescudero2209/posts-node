@@ -28,8 +28,6 @@ const pool = new Pool({
     }
   }
 
-
-
 const getPost = async () => {
   const { rows } = await pool.query("SELECT * FROM posts");
   console.log(rows);
