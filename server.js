@@ -8,8 +8,8 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("/posts", async (req, res) => {
-  const posts = await getPost();
-  res.json(posts);
+    const travels = await getPost();
+    res.json(travels);
 });
 
 app.post("/posts", async (req, res) => {
